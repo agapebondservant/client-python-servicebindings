@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import os
 from os import path
 from threading import Lock
 from typing import Dict, Optional
@@ -148,6 +149,9 @@ class ConfigTreeBinding(Binding):
 
     def get_name(self) -> str:
         return path.basename(self._root)
+
+    def list_keys(self) -> list[str]:
+        return [f.name for f in os.scandir(self._root) if not f.name.startswith('.')]
 
 
 class DictBinding(Binding):
