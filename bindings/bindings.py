@@ -113,3 +113,10 @@ def filter(bindings: List[Binding], type: Optional[str] = None, provider: Option
         match.append(b)
 
     return match
+
+
+def check_service_bindings_exist():
+    if not from_service_binding_root():
+        print("No service bindings found.")
+    else:
+        print("Service bindings were found.")
